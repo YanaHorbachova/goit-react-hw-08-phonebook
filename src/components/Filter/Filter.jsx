@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { changeFilter } from "../../redux/phonebook/";
+import { getFilter } from "../../redux/phonebook/phonebook-selectors";
 
 const Filter = ({ value, onChange }) => (
   <>
@@ -21,7 +22,7 @@ Filter.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  value: state.filter,
+  value: getFilter(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

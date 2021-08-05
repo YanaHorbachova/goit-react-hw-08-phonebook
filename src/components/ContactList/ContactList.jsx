@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { phonebookOperations } from "../../redux/phonebook/";
-import { getFilteredContacts, getIsLoading, getError} from "../../redux/phonebook/phonebook-selectors";
-import Loader from '../Loader';
+import { getFilteredContacts} from "../../redux/phonebook/phonebook-selectors";
 import ContactListItem from "./ContactListItem";
 import "./ContactList.css";
 import PropTypes from "prop-types";
@@ -14,11 +13,9 @@ class ContactList extends Component {
   }
 
   render() {
-    const { contacts, onDeleteContact, isLoadingContacts, error } = this.props;
+    const { contacts, onDeleteContact} = this.props;
     return (
       <>
-      {isLoadingContacts && <Loader />}
-      {error && <h2>404 Not Found</h2>}
 
   <ul className="contact-list">
     {contacts.map((contact) => (
@@ -41,8 +38,6 @@ ContactList.propTypes = {
 
 const mapStateToProps = (state) => ({
   contacts: getFilteredContacts(state),
-  isLoadingContacts: getIsLoading(state),
-  error: getError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
